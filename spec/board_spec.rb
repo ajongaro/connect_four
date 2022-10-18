@@ -40,6 +40,12 @@ RSpec.describe Board do
       
       expect(board.display_board).to eq(pretty_board)
     end
+
+    it 'has access to the values in row 1' do
+      board.create_layout
+
+      expect(board.row_1).to eq('.......')
+    end
   end
 end
 
