@@ -69,4 +69,13 @@ class Board
   def column_F
     "#{@layout[:F1].slot}#{@layout[:F2].slot}#{@layout[:F3].slot}#{@layout[:F4].slot}#{@layout[:F5].slot}#{@layout[:F6].slot}"
   end
+
+  def column_G
+    "#{@layout[:G1].slot}#{@layout[:G2].slot}#{@layout[:G3].slot}#{@layout[:G4].slot}#{@layout[:G5].slot}#{@layout[:G6].slot}"
+  end
+
+  def diag_1
+    "#{@layout[:A4].slot}#{@layout[:B3].slot}#{@layout[:C2].slot}#{@layout[:D1].slot}"
+  end
+
 end

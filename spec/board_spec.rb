@@ -113,6 +113,18 @@ RSpec.describe Board do
       expect(board.column_F).to eq('......')
     end
 
+    it 'has access to the values in column G' do
+      board.create_layout
+
+      expect(board.column_G).to eq('......')
+    end
+
+    it 'has access to the first diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_1).to eq('....')
+    end
+
 
   end
 end
