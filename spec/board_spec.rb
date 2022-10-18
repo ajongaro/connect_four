@@ -178,6 +178,12 @@ RSpec.describe Board do
 
       expect(board.diag_10).to eq('......')
     end
+
+    it 'has access to the fifth diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_11).to eq('.....')
+    end
     
 
   end
