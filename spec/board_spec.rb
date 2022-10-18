@@ -34,10 +34,10 @@ RSpec.describe Board do
       expect(values_output).to eq(values_expected)
     end
 
-    xit 'prints a pretty board' do
+    it 'prints a pretty board' do
       board.create_layout
       pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......."
-
+      
       expect(board.display_board).to eq(pretty_board)
     end
   end
