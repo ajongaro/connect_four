@@ -61,4 +61,8 @@ class Board
   def column_D
     "#{@layout[:D1].slot}#{@layout[:D2].slot}#{@layout[:D3].slot}#{@layout[:D4].slot}#{@layout[:D5].slot}#{@layout[:D6].slot}"
   end
+
+  def column_E
+    "#{@layout[:E1].slot}#{@layout[:E2].slot}#{@layout[:E3].slot}#{@layout[:E4].slot}#{@layout[:E5].slot}#{@layout[:E6].slot}"
+  end
 end
