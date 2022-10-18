@@ -1,3 +1,4 @@
+require './lib/space'
 require './lib/board'
 
 RSpec.describe Board do
@@ -25,8 +26,9 @@ RSpec.describe Board do
 
     it 'builds a hash with the correct key values .' do 
       board.create_layout
+      values_output = board.layout.values.map(&:slot)
       values_expected = [".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."]
-      expect(board.layout.values).to eq(values_expected)
+      expect(values_output).to eq(values_expected)
     end
 
     xit 'has a column IDs array' do
