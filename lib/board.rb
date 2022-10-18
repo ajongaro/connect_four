@@ -10,6 +10,7 @@ class Board
     create_layout
   end
 
+  # build the board into @layout
   def create_layout
     ("A".."G").to_a.each do |letter|
       (1..6).each do |number|
@@ -18,10 +19,50 @@ class Board
     end
   end
 
+  # an array of strings to iterate through for "xxxx" or "oooo"
+  def possible_wins
+    [
+    row_1,
+    row_2,
+    row_3,
+    row_4,
+    row_5,
+    row_6,
+    column_A,
+    column_B,
+    column_C,
+    column_D,
+    column_E,
+    column_F,
+    column_G,
+    diag_1,
+    diag_2,
+    diag_3,
+    diag_4,
+    diag_5,
+    diag_6,
+    diag_7,
+    diag_8,
+    diag_9,
+    diag_10,
+    diag_11,
+    diag_12
+  ]
+  end
+
+  def winner?
+    possible_wins.each do |line|
+     return true if line.include?("XXXX") || line.include?("OOOO")
+    end
+    false # if no connect 4's are found
+  end
+
+  # return formatted board for printing to terminal
   def display_board 
     "#{HEADER}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{row_6}"
   end
 
+  # do we want to store these as instance variables instead of methods?
   def row_1
     "#{@layout[:A1].slot}#{@layout[:B1].slot}#{@layout[:C1].slot}#{@layout[:D1].slot}#{@layout[:E1].slot}#{@layout[:F1].slot}#{@layout[:G1].slot}"
   end

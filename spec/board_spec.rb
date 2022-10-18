@@ -2,13 +2,13 @@ require './lib/space'
 require './lib/board'
 
 RSpec.describe Board do
+  let(:board) { Board.new }
   describe "#initialize" do  
-    let(:board) { Board.new }
-
     it 'exists' do
       expect(board).to be_a(Board)
     end
-    
+  end  
+  describe '#create_layout' do
     it 'creates a hash' do
       expect(board.layout).to be_a(Hash) 
     end
@@ -33,14 +33,18 @@ RSpec.describe Board do
 
       expect(values_output).to eq(values_expected)
     end
+  end
 
+  describe '#display_board' do
     it 'prints a pretty board' do
       board.create_layout
       pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......."
       
       expect(board.display_board).to eq(pretty_board)
     end
+  end
 
+  describe '#rows' do
     it 'has access to the values in row 1' do
       board.create_layout
 
@@ -76,7 +80,9 @@ RSpec.describe Board do
 
       expect(board.row_6).to eq('.......')
     end
+  end
 
+  describe '#columns' do
     it 'has access to the values in column A' do
       board.create_layout
 
@@ -118,7 +124,9 @@ RSpec.describe Board do
 
       expect(board.column_G).to eq('......')
     end
+  end
 
+  describe '#diagonals' do
     it 'has access to the first diagonal from left' do
       board.create_layout
 
@@ -190,8 +198,25 @@ RSpec.describe Board do
 
       expect(board.diag_12).to eq('....')
     end
-    
+  end
 
+  describe '#winner?' do
+    it 'returns false with no pieces played' do
+      board.create_layout
+      
+      expect(board.winner?).to be false
+    end
+
+    it 'returns true with 4 pieces in a _row_' do
+      board.create_layout
+
+      board.layout[:A1].add("X")
+      board.layout[:B1].add("X")
+      board.layout[:C1].add("X")
+      board.layout[:D1].add("X")
+
+      expect(board.winner?).to be true
+    end
   end
 end
 
