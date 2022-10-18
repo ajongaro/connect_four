@@ -19,7 +19,7 @@ class Board
   end
 
   def display_board 
-    "#{HEADER}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{@layout[:A6].slot}#{@layout[:B6].slot}#{@layout[:C6].slot}#{@layout[:D6].slot}#{@layout[:E6].slot}#{@layout[:F6].slot}#{@layout[:G6].slot}"
+    "#{HEADER}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{row_6}"
   end
 
   def row_1
@@ -40,5 +40,9 @@ class Board
 
   def row_5
     "#{@layout[:A5].slot}#{@layout[:B5].slot}#{@layout[:C5].slot}#{@layout[:D5].slot}#{@layout[:E5].slot}#{@layout[:F5].slot}#{@layout[:G5].slot}"
+  end
+
+  def row_6
+    "#{@layout[:A6].slot}#{@layout[:B6].slot}#{@layout[:C6].slot}#{@layout[:D6].slot}#{@layout[:E6].slot}#{@layout[:F6].slot}#{@layout[:G6].slot}"
   end
 end
