@@ -98,4 +98,12 @@ class Board
     "#{@layout[:D6].slot}#{@layout[:E5].slot}#{@layout[:F4].slot}#{@layout[:G3].slot}"
   end
 
+  def diag_7
+    "#{@layout[:G4].slot}#{@layout[:F3].slot}#{@layout[:E2].slot}#{@layout[:D1].slot}"
+  end
+
+  def diag_8
+    "#{@layout[:G5].slot}#{@layout[:F4].slot}#{@layout[:E3].slot}#{@layout[:D2].slot}#{@layout[:C1].slot}"
+  end
+
 end
