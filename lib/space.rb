@@ -1,11 +1,17 @@
 class Space
-  attr_reader :slot
+  attr_reader :slot, :available
 
   def initialize
     @slot = "."
+    @available = true
   end
 
-  def fill(token)
-    @slot = token
+  def add(token)
+    return if !@available
+    @slot = token 
+    @available = false
   end
+
+
 end
+
