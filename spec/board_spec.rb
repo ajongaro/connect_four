@@ -125,6 +125,12 @@ RSpec.describe Board do
       expect(board.diag_1).to eq('....')
     end
 
+    it 'has access to the second diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_2).to eq('.....')
+    end
+
 
   end
 end
