@@ -34,12 +34,164 @@ RSpec.describe Board do
       expect(values_output).to eq(values_expected)
     end
 
-    xit 'prints a pretty board' do
+    it 'prints a pretty board' do
       board.create_layout
       pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......."
-
+      
       expect(board.display_board).to eq(pretty_board)
     end
+
+    it 'has access to the values in row 1' do
+      board.create_layout
+
+      expect(board.row_1).to eq('.......')
+    end
+
+    it 'has access to the values in row 2' do
+      board.create_layout
+
+      expect(board.row_2).to eq('.......')
+    end
+
+    it 'has access to the values in row 3' do
+      board.create_layout
+
+      expect(board.row_3).to eq('.......')
+    end
+
+    it 'has access to the values in row 4' do
+      board.create_layout
+
+      expect(board.row_4).to eq('.......')
+    end
+
+    it 'has access to the values in row 5' do
+      board.create_layout
+
+      expect(board.row_5).to eq('.......')
+    end
+
+    it 'has access to the values in row 6' do
+      board.create_layout
+
+      expect(board.row_6).to eq('.......')
+    end
+
+    it 'has access to the values in column A' do
+      board.create_layout
+
+      expect(board.column_A).to eq('......')
+    end
+
+    it 'has access to the values in column B' do
+      board.create_layout
+
+      expect(board.column_B).to eq('......')
+    end
+
+    it 'has access to the values in column C' do
+      board.create_layout
+
+      expect(board.column_C).to eq('......')
+    end
+
+    it 'has access to the values in column D' do
+      board.create_layout
+
+      expect(board.column_D).to eq('......')
+    end
+
+    it 'has access to the values in column E' do
+      board.create_layout
+
+      expect(board.column_E).to eq('......')
+    end
+
+    it 'has access to the values in column F' do
+      board.create_layout
+
+      expect(board.column_F).to eq('......')
+    end
+
+    it 'has access to the values in column G' do
+      board.create_layout
+
+      expect(board.column_G).to eq('......')
+    end
+
+    it 'has access to the first diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_1).to eq('....')
+    end
+
+    it 'has access to the second diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_2).to eq('.....')
+    end
+
+    it 'has access to the third diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_3).to eq('......')
+    end
+
+    it 'has access to the fourth diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_4).to eq('......')
+    end
+
+    it 'has access to the fifth diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_5).to eq('.....')
+    end
+
+    it 'has access to the sixth diagonal from left' do
+      board.create_layout
+
+      expect(board.diag_6).to eq('....')
+    end
+
+    it 'has access to the first diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_7).to eq('....')
+    end
+
+    it 'has access to the second diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_8).to eq('.....')
+    end
+
+    it 'has access to the third diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_9).to eq('......')
+    end
+
+    it 'has access to the fourth diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_10).to eq('......')
+    end
+
+    it 'has access to the fifth diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_11).to eq('.....')
+    end
+
+    it 'has access to the sixth diagonal from right' do
+      board.create_layout
+
+      expect(board.diag_12).to eq('....')
+    end
+    
+
   end
 end
 
