@@ -42,7 +42,9 @@ RSpec.describe Board do
       
       expect(board.display_board).to eq(pretty_board)
     end
+  end
 
+  describe '#rows' do
     it 'has access to the values in row 1' do
       board.create_layout
 
@@ -78,7 +80,9 @@ RSpec.describe Board do
 
       expect(board.row_6).to eq('.......')
     end
+  end
 
+  describe '#columns' do
     it 'has access to the values in column A' do
       board.create_layout
 
@@ -120,7 +124,9 @@ RSpec.describe Board do
 
       expect(board.column_G).to eq('......')
     end
+  end
 
+  describe '#diagonals' do
     it 'has access to the first diagonal from left' do
       board.create_layout
 
