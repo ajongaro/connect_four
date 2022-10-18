@@ -45,4 +45,8 @@ class Board
   def row_6
     "#{@layout[:A6].slot}#{@layout[:B6].slot}#{@layout[:C6].slot}#{@layout[:D6].slot}#{@layout[:E6].slot}#{@layout[:F6].slot}#{@layout[:G6].slot}"
   end
+
+  def column_A
+    "#{@layout[:A1].slot}#{@layout[:A2].slot}#{@layout[:A3].slot}#{@layout[:A4].slot}#{@layout[:A5].slot}#{@layout[:A6].slot}"
+  end
 end

@@ -71,10 +71,16 @@ RSpec.describe Board do
       expect(board.row_5).to eq('.......')
     end
 
-     it 'has access to the values in row 6' do
+    it 'has access to the values in row 6' do
       board.create_layout
 
       expect(board.row_6).to eq('.......')
+    end
+
+    it 'has access to the values in column A' do
+      board.create_layout
+
+      expect(board.column_A).to eq('......')
     end
 
 
