@@ -19,6 +19,7 @@ class Board
     end
   end
 
+  # an array of strings to iterate through for "xxxx" or "oooo"
   def possible_wins
     [
     row_1,
@@ -47,6 +48,13 @@ class Board
     diag_11,
     diag_12
   ]
+  end
+
+  def winner?
+    possible_wins.each do |line|
+     return true if line.include?("XXXX") || line.include?("OOOO")
+    end
+    false # if no connect 4's are found
   end
 
   # return formatted board for printing to terminal
