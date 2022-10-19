@@ -204,7 +204,7 @@ RSpec.describe Board do
     it 'returns false with no pieces played' do
       board.create_layout
       
-      expect(board.winner?("X")).to be false
+      expect(board.winner?).to be false
     end
 
     it 'returns true with 4 pieces in a _row_' do
@@ -215,7 +215,7 @@ RSpec.describe Board do
       board.layout[:C1].add("X")
       board.layout[:D1].add("X")
 
-      expect(board.winner?("X")).to be true
+      expect(board.winner?).to be true
     end
   end
 

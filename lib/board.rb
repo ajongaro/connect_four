@@ -50,9 +50,9 @@ class Board
   ]
   end
 
-  def winner?(token)
+  def winner?
     possible_wins.each do |line|
-     return true if line.include?("#{token * 4}") 
+     return true if line.include?("XXXX") || line.include?("OOOO")
     end
     false # if no connect 4's are found
   end
