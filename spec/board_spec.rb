@@ -218,7 +218,26 @@ RSpec.describe Board do
       expect(board.winner?).to be true
     end
   end
+
+  describe '#tie?' do
+    it 'returns true if all slots are occupied and no winner' do
+      board.create_layout
+
+      x_array = [:A1, :A2, :A3, :B4, :B5, :B6, :C1, :C2, :C3, :D4, :D5, :D6, :E1, :E2, :E3, :F4, :F5, :F6, :G1, :G2, :G3]  
+     
+      board.layout.each do |key,value|
+        if x_array.include? key
+          value.add("X")
+        else
+          value.add("O")
+        end
+      end
+
+      expect(board.tie?).to be true 
+    end
+  end
 end
+
 
 
 
