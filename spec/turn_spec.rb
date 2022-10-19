@@ -10,4 +10,6 @@ RSpec.describe Turn do
       expect(turn).to be_a(Turn)
     end
   end
+
+  
 end
