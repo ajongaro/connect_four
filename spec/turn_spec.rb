@@ -34,5 +34,11 @@ RSpec.describe Turn do
       board.layout[:A1].add("X")
       expect(turn.valid_column?).to be false
     end
+
+    it 'returns false if column does not exist' do
+      turn = Turn.new("U", board)
+
+      expect(turn.valid_column?).to be false
+    end
   end
 end
