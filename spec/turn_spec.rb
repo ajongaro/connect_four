@@ -25,6 +25,14 @@ RSpec.describe Turn do
 
       expect(turn.valid_column?).to be true
     end
+
+    it 'checks to see if column has available slot' do
+      turn = Turn.new("A", board)
+
+      expect(turn.valid_column?).to be true
+
+      board.layout[:A1].add("X")
+      expect(turn.valid_column?).to be false
+    end
   end
-  
 end

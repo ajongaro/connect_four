@@ -30,9 +30,6 @@ class ArrayMaker
   end
 end
 
-if a space has a token 
-
-
 an_array = ArrayMaker.new
 an_array.build_array
 
@@ -47,3 +44,5 @@ an_array.print_array
 #   print line.slot
 #   puts "\n"
 # end
+
+puts "hello".exclude? "o"
