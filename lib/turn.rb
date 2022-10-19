@@ -1,12 +1,19 @@
+
+
 class Turn
   attr_reader :selected_column
-  def initialize(selected_column)
+  def initialize(selected_column, board)
     @selected_column = selected_column
+    @board = board
+  end
+
+  def valid_column?
+    @board.header.include?(@selected_column)
   end
 end
 
+
 # FLOW
-# player selects a column by letter
 # checks if column is valid (A - G) && slot_1  
 # algo checks what the lowest available slot is in col
 # inserts player token (via .add method) to that slot
@@ -23,3 +30,7 @@ end
 # Drops token if valid
 # Tries another space
 # drops in appropriate space   
+
+
+# DONE
+# player selects a column by letter

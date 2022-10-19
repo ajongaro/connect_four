@@ -1,12 +1,13 @@
 require './lib/space'
 
 class Board
-  attr_reader :layout
+  attr_reader :layout, :header
 
-  HEADER = "ABCDEFG"
+  # HEADER = "ABCDEFG"
 
   def initialize
     @layout = {}
+    @header = "ABCDEFG" 
     create_layout
   end
 
@@ -66,7 +67,7 @@ class Board
 
   # return formatted board for printing to terminal
   def display_board 
-    "#{HEADER}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{row_6}"
+    "#{@header}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{row_6}"
   end
 
   # do we want to store these as instance variables instead of methods?
