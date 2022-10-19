@@ -52,13 +52,17 @@ class Board
 
   def winner?
     possible_wins.each do |line|
-     return true if line.include?("XXXX") || line.include?("OOOO")
+      return true if line.include?("XXXX") || line.include?("OOOO")
     end
     false # if no connect 4's are found
   end
 
   def tie?
-    
+    return false if winner?
+    # require 'pry'; binding.pry
+    if @layout.values.select { |value| value.available == true} == []
+      return true
+    end
   end
 
 
