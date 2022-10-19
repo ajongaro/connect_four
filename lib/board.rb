@@ -59,12 +59,10 @@ class Board
 
   def tie?
     return false if winner?
-    # require 'pry'; binding.pry
     if @layout.values.select { |value| value.available == true} == []
       return true
     end
   end
-
 
   # return formatted board for printing to terminal
   def display_board 
