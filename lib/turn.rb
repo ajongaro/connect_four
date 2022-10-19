@@ -1,7 +1,8 @@
 class Turn
-
-
-
+  attr_reader :selected_column
+  def initialize(selected_column)
+    @selected_column = selected_column
+  end
 end
 
 # FLOW
