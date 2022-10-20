@@ -98,11 +98,11 @@ printed_board.left_to_right_diag_win(printed_board.layout[:A6])
 
 # puts "FIRST ROUND COMPLETE"
 
-# second_board = BoardPrinter.new
-# second_board.layout[:G5].add("O")
-# second_board.layout[:G4].add("O")
-# second_board.layout[:G3].add("O")
-# second_board.layout[:G2].add("O")
+second_board = BoardPrinter.new
+second_board.layout[:G5].add("O")
+second_board.layout[:G4].add("O")
+second_board.layout[:G3].add("O")
+second_board.layout[:G2].add("O")
 
 # print second_board.pretty_print
 # second_board.search_for_winner

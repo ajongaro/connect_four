@@ -207,7 +207,7 @@ RSpec.describe Board do
       expect(board.search_for_winner).to be false
     end
 
-    it 'returns true with 4 pieces in a _row_' do
+    it 'returns true with 4 pieces horizontally' do
       board.create_layout
 
       board.layout[:A1].add("X")
@@ -217,7 +217,16 @@ RSpec.describe Board do
       
       expect(board.search_for_winner).to be true
     end
-    
+
+    it 'returns true with 4 pieces vertically' do 
+      board.create_layout 
+      board.layout[:G5].add("O")
+      board.layout[:G4].add("O")
+      board.layout[:G3].add("O")
+      board.layout[:G2].add("O")
+       
+      expect(board.search_for_winner).to be true
+    end
   end
 
   describe '#winner?' do
