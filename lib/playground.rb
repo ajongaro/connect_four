@@ -66,30 +66,46 @@ class BoardPrinter
       array.clear
     end
   end
-  
+ 
+  @diag_array = []
+  @diag_win = false
+
+  # def left_to_right_diag_win(space)
+  #   # return if diag_array does not contain a win && space == nil
+  #   # go left up the a column
+  #   space = space.to_s.split("")
+  #   space[0] = space[0].next
+  #   space[1] = space[1].to_i.pred.to_s
+  #   new_space = space.join("").to_sym
+  #   left_to_right_diag_win(new_space) 
+  #   # go right across 6 row
+  # end
 end
 
 printed_board = BoardPrinter.new
 
 print printed_board.pretty_print
-printed_board.layout[:A6].add("X")
-printed_board.layout[:B6].add("X")
-printed_board.layout[:C6].add("X")
-printed_board.layout[:D6].add("X")
+print "\n\n"
 
-print printed_board.pretty_print
-printed_board.search_for_winner
+printed_board.left_to_right_diag_win(printed_board.layout[:A6])
+# printed_board.layout[:A6].add("X")
+# printed_board.layout[:B6].add("X")
+# printed_board.layout[:C6].add("X")
+# printed_board.layout[:D6].add("X")
 
-puts "FIRST ROUND COMPLETE"
+# print printed_board.pretty_print
+# printed_board.search_for_winner
 
-second_board = BoardPrinter.new
-second_board.layout[:G5].add("O")
-second_board.layout[:G4].add("O")
-second_board.layout[:G3].add("O")
-second_board.layout[:G2].add("O")
+# puts "FIRST ROUND COMPLETE"
 
-print second_board.pretty_print
-second_board.search_for_winner
+# second_board = BoardPrinter.new
+# second_board.layout[:G5].add("O")
+# second_board.layout[:G4].add("O")
+# second_board.layout[:G3].add("O")
+# second_board.layout[:G2].add("O")
+
+# print second_board.pretty_print
+# second_board.search_for_winner
 
 
 
