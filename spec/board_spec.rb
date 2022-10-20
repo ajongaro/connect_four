@@ -35,12 +35,12 @@ RSpec.describe Board do
     end
   end
 
-  describe '#display_board' do
+  describe '#pretty_print' do
     it 'prints a pretty board' do
       board.create_layout
-      pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......."
-      
-      expect(board.display_board).to eq(pretty_board)
+      pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n"
+
+      expect(board.pretty_print).to eq(pretty_board)
     end
   end
 
