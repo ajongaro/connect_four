@@ -41,7 +41,7 @@ RSpec.describe Turn do
       expect(turn.valid_column?).to be false
     end
   end
-
+  
   describe 'add token method' do
     it 'adds a token to the lowest available space in the column' do
       turn = Turn.new("A", board)
@@ -54,7 +54,6 @@ RSpec.describe Turn do
       
       expect(board.layout[:A5].slot).to eq("O")
       expect(board.layout[:A6].slot).to eq("X")
-      print board.pretty_print
     end
   end
 end

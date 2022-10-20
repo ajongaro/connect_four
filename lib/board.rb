@@ -93,6 +93,7 @@ class Board
       return true if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
       array.clear
     end
+    false
   end
 
   def vertical_win 
@@ -104,6 +105,7 @@ class Board
       return true if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
       array.clear
     end
+    false
   end 
 
   # return printed board board based on below methods

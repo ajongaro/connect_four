@@ -200,6 +200,26 @@ RSpec.describe Board do
     end
   end
 
+  describe '#search_for_winner' do
+    it 'returns false with no pieces played' do
+      board.create_layout
+      
+      expect(board.search_for_winner).to be false
+    end
+
+    it 'returns true with 4 pieces in a _row_' do
+      board.create_layout
+
+      board.layout[:A1].add("X")
+      board.layout[:B1].add("X")
+      board.layout[:C1].add("X")
+      board.layout[:D1].add("X")
+      
+      expect(board.search_for_winner).to be true
+    end
+    
+  end
+
   describe '#winner?' do
     it 'returns false with no pieces played' do
       board.create_layout
