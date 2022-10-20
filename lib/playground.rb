@@ -43,8 +43,10 @@ class BoardPrinter
       ("A".."G").each do |letter|
          array << @layout["#{letter}#{number}".to_sym].slot 
       end
-      if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
-        puts "HORIZONTAL WIN"
+      if array.join("").include?("XXXX")
+        puts "HORIZONTAL X WIN"
+      elsif array.join("").include?("OOOO") 
+        puts "HORIZONTAL O WIN"
       end
       array.clear
     end
@@ -56,8 +58,10 @@ class BoardPrinter
       6.downto(1).to_a.each do |number|
          array << @layout["#{letter}#{number}".to_sym].slot 
       end
-      if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
-        puts "VERTICAL WIN!"
+      if array.join("").include?("XXXX")
+        puts "VERTICAL X WIN"
+      elsif array.join("").include?("OOOO") 
+        puts "VERTICAL O WIN"
       end
       array.clear
     end
@@ -71,7 +75,7 @@ print printed_board.pretty_print
 printed_board.layout[:A6].add("X")
 printed_board.layout[:B6].add("X")
 printed_board.layout[:C6].add("X")
-printed_board.layout[:D6].add("O")
+printed_board.layout[:D6].add("X")
 
 print printed_board.pretty_print
 printed_board.search_for_winner
@@ -82,7 +86,7 @@ second_board = BoardPrinter.new
 second_board.layout[:G5].add("O")
 second_board.layout[:G4].add("O")
 second_board.layout[:G3].add("O")
-second_board.layout[:G2].add("X")
+second_board.layout[:G2].add("O")
 
 print second_board.pretty_print
 second_board.search_for_winner
