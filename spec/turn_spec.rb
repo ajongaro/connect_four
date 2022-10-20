@@ -54,10 +54,7 @@ RSpec.describe Turn do
       
       expect(board.layout[:A5].slot).to eq("O")
       expect(board.layout[:A6].slot).to eq("X")
+      print board.pretty_print
     end
-
-  
-
-
   end
 end

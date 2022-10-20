@@ -20,26 +20,72 @@ class BoardPrinter
   end
 
   def pretty_print
-    puts @header
+    array = ["ABCDEFG\n"]
     (1..6).to_a.each do |number|
       ("A".."G").each do |letter|
-         print @layout["#{letter}#{number}".to_sym].slot 
+         array << @layout["#{letter}#{number}".to_sym].slot 
       end
-      puts "\n"
+      array << "\n"
+    end
+    array.join("")
+  end
+
+
+  def search_for_winner
+    horizontal_win
+    vertical_win
+  end
+
+  # start with horizontal wins only
+  def horizontal_win 
+    array = []
+    6.downto(1).to_a.each do |number|
+      ("A".."G").each do |letter|
+         array << @layout["#{letter}#{number}".to_sym].slot 
+      end
+      if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
+        puts "HORIZONTAL WIN"
+      end
+      array.clear
     end
   end
+
+  def vertical_win 
+    array = []
+    ("A".."G").each do |letter|
+      6.downto(1).to_a.each do |number|
+         array << @layout["#{letter}#{number}".to_sym].slot 
+      end
+      if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
+        puts "VERTICAL WIN!"
+      end
+      array.clear
+    end
+  end
+  
 end
 
 printed_board = BoardPrinter.new
 
-printed_board.pretty_print
-
+print printed_board.pretty_print
 printed_board.layout[:A6].add("X")
 printed_board.layout[:B6].add("X")
 printed_board.layout[:C6].add("X")
-printed_board.layout[:D6].add("X")
+printed_board.layout[:D6].add("O")
 
-printed_board.pretty_print
+print printed_board.pretty_print
+printed_board.search_for_winner
+
+puts "FIRST ROUND COMPLETE"
+
+second_board = BoardPrinter.new
+second_board.layout[:G5].add("O")
+second_board.layout[:G4].add("O")
+second_board.layout[:G3].add("O")
+second_board.layout[:G2].add("X")
+
+print second_board.pretty_print
+second_board.search_for_winner
 
 
 
