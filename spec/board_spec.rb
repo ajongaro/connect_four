@@ -7,7 +7,8 @@ RSpec.describe Board do
     it 'exists' do
       expect(board).to be_a(Board)
     end
-  end  
+  end
+
   describe '#create_layout' do
     it 'creates a hash' do
       expect(board.layout).to be_a(Hash) 
@@ -41,88 +42,6 @@ RSpec.describe Board do
       pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n"
 
       expect(board.pretty_print).to eq(pretty_board)
-    end
-  end
-
-  describe '#rows' do
-    it 'has access to the values in row 1' do
-      board.create_layout
-
-      expect(board.row_1).to eq('.......')
-    end
-
-    it 'has access to the values in row 2' do
-      board.create_layout
-
-      expect(board.row_2).to eq('.......')
-    end
-
-    it 'has access to the values in row 3' do
-      board.create_layout
-
-      expect(board.row_3).to eq('.......')
-    end
-
-    it 'has access to the values in row 4' do
-      board.create_layout
-
-      expect(board.row_4).to eq('.......')
-    end
-
-    it 'has access to the values in row 5' do
-      board.create_layout
-
-      expect(board.row_5).to eq('.......')
-    end
-
-    it 'has access to the values in row 6' do
-      board.create_layout
-
-      expect(board.row_6).to eq('.......')
-    end
-  end
-
-  describe '#columns' do
-    it 'has access to the values in column A' do
-      board.create_layout
-
-      expect(board.column_A).to eq('......')
-    end
-
-    it 'has access to the values in column B' do
-      board.create_layout
-
-      expect(board.column_B).to eq('......')
-    end
-
-    it 'has access to the values in column C' do
-      board.create_layout
-
-      expect(board.column_C).to eq('......')
-    end
-
-    it 'has access to the values in column D' do
-      board.create_layout
-
-      expect(board.column_D).to eq('......')
-    end
-
-    it 'has access to the values in column E' do
-      board.create_layout
-
-      expect(board.column_E).to eq('......')
-    end
-
-    it 'has access to the values in column F' do
-      board.create_layout
-
-      expect(board.column_F).to eq('......')
-    end
-
-    it 'has access to the values in column G' do
-      board.create_layout
-
-      expect(board.column_G).to eq('......')
     end
   end
 
@@ -227,24 +146,15 @@ RSpec.describe Board do
        
       expect(board.search_for_winner).to be true
     end
-  end
 
-  describe '#winner?' do
-    it 'returns false with no pieces played' do
-      board.create_layout
-      
-      expect(board.winner?).to be false
-    end
+    it 'returns true with 4 pieces diagonally' do
+      board.create_layout 
+      board.layout[:G5].add("O")
+      board.layout[:F4].add("O")
+      board.layout[:E3].add("O")
+      board.layout[:D2].add("O")
 
-    it 'returns true with 4 pieces in a _row_' do
-      board.create_layout
-
-      board.layout[:A1].add("X")
-      board.layout[:B1].add("X")
-      board.layout[:C1].add("X")
-      board.layout[:D1].add("X")
-      
-      expect(board.winner?).to be true
+      expect(board.search_for_winner).to be true
     end
   end
 
