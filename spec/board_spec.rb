@@ -214,7 +214,7 @@ RSpec.describe Board do
       board.layout[:B1].add("X")
       board.layout[:C1].add("X")
       board.layout[:D1].add("X")
-
+      
       expect(board.winner?).to be true
     end
   end
