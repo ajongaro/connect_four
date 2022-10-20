@@ -66,9 +66,52 @@ class Board
   end
 
   # return formatted board for printing to terminal
-  def display_board 
-    "#{@header}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{row_6}"
+  def pretty_print
+    array = ["ABCDEFG\n"]
+    (1..6).to_a.each do |number|
+      ("A".."G").each do |letter|
+         array << @layout["#{letter}#{number}".to_sym].slot 
+      end
+      array << "\n"
+    end
+    array.join("")
   end
+
+  def search_for_winner
+    return true if horizontal_win
+    return true if vertical_win
+    # return true if diag_win
+    false
+  end
+
+  def horizontal_win 
+    array = []
+    6.downto(1).to_a.each do |number|
+      ("A".."G").each do |letter|
+         array << @layout["#{letter}#{number}".to_sym].slot 
+      end
+      return true if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
+      array.clear
+    end
+    false
+  end
+
+  def vertical_win 
+    array = []
+    ("A".."G").each do |letter|
+      6.downto(1).to_a.each do |number|
+         array << @layout["#{letter}#{number}".to_sym].slot 
+      end
+      return true if array.join("").include?("XXXX") || array.join("").include?("OOOO") 
+      array.clear
+    end
+    false
+  end 
+
+  # return printed board board based on below methods
+  # def display_board 
+  #   "#{@header}\n#{row_1}\n#{row_2}\n#{row_3}\n#{row_4}\n#{row_5}\n#{row_6}"
+  # end
 
   # do we want to store these as instance variables instead of methods?
   def row_1

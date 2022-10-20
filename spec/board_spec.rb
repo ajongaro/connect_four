@@ -35,12 +35,12 @@ RSpec.describe Board do
     end
   end
 
-  describe '#display_board' do
+  describe '#pretty_print' do
     it 'prints a pretty board' do
       board.create_layout
-      pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......."
-      
-      expect(board.display_board).to eq(pretty_board)
+      pretty_board = "ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n"
+
+      expect(board.pretty_print).to eq(pretty_board)
     end
   end
 
@@ -197,6 +197,35 @@ RSpec.describe Board do
       board.create_layout
 
       expect(board.diag_12).to eq('....')
+    end
+  end
+
+  describe '#search_for_winner' do
+    it 'returns false with no pieces played' do
+      board.create_layout
+      
+      expect(board.search_for_winner).to be false
+    end
+
+    it 'returns true with 4 pieces horizontally' do
+      board.create_layout
+
+      board.layout[:A1].add("X")
+      board.layout[:B1].add("X")
+      board.layout[:C1].add("X")
+      board.layout[:D1].add("X")
+      
+      expect(board.search_for_winner).to be true
+    end
+
+    it 'returns true with 4 pieces vertically' do 
+      board.create_layout 
+      board.layout[:G5].add("O")
+      board.layout[:G4].add("O")
+      board.layout[:G3].add("O")
+      board.layout[:G2].add("O")
+       
+      expect(board.search_for_winner).to be true
     end
   end
 
