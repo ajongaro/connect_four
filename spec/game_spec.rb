@@ -1,6 +1,4 @@
 require './lib/game'
-require './lib/board'
-require './lib/turn'
 
 RSpec.describe Game do
   let(:game) { Game.new }
@@ -10,14 +8,10 @@ RSpec.describe Game do
     end
     
     it 'creates a board' do
-      game.start_game
-
       expect(game.board).to be_a(Board)    
     end
   
     it 'creates a board layout' do
-      game.start_game
-
       expect(game.board.layout).to be_a(Hash)
       expect(game.board.layout[:A1]).to be_a(Space)
     end
@@ -30,9 +24,15 @@ RSpec.describe Game do
       end
     end
     
-    describe '#promp_for_input' do
+    describe '#prompt_for_input' do
       # we can't test gets.chomp
     end
-  
+  end
+
+  describe 'player_turn' do
+    it 'prompts player for column selection' do
+      expect(game.player_prompt).to eq("Please Select a Column: 'ABCDEFG'")
+    end
+
   end
 end
