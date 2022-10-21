@@ -9,9 +9,30 @@ class Game
   end
 
   def game_play 
-    while game.board.search_for_winner == false && game.board.tie? == false
+    while @board.search_for_winner == false
       print_board
-    player_prompt
+
+      player_prompt
+      if @board.search_for_winner
+        p "You Win!"
+        break
+        #RETURN TO MAIN MENU
+      elsif @board.tie?
+        p "Tie Game!"
+        break
+        #RETURN TO MAIN MENU
+      end
+
+      computer_turn
+      if @board.search_for_winner
+        p "You Lose!"
+        break
+        #RETURN TO MAIN MENU
+      elsif @board.tie?
+        p "Tie Game!"
+        break
+      end
+    end
     # loop player / computer turn sequence and assessment
   end
 
@@ -59,14 +80,14 @@ class Game
     turn = Turn.new(array.sample, @board)
 
     if turn.valid_column?
-      turn.drop_token(column_selection, "O")
+      turn.drop_token(array.sample, "O")
     else
       computer_turn
     end
   end
 
   def print_board
-    @board.pretty_print
+    print @board.pretty_print
   end
 end
 
