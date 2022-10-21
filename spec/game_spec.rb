@@ -29,5 +29,10 @@ RSpec.describe Game do
         expect(game.welcome_message).to eq("Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'q' to quit.")
       end
     end
+    
+    describe '#promp_for_input' do
+      # we can't test gets.chomp
+    end
+  
   end
 end

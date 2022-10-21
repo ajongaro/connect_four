@@ -2,23 +2,43 @@ class Game
   attr_reader :board
   def initialize
     @board = nil
-    start_game
+    main_menu_prompt
   end
 
   def start_game
     # Beginning of program
     # welcome message 
-    puts welcome_message 
     # Add print laterChoice player quit or start
     # create the board, and generate layout
     @board = Board.new
   end
 
-
   def welcome_message
     "Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'q' to quit."
   end
+
+  def main_menu_prompt
+    puts welcome_message
+    var = gets.chomp
+    if var.downcase == 'q'
+      quit_game
+    elsif var.downcase == 'p'
+      start_game
+    else
+      puts "Invalid selection.\n\n"
+      main_menu_prompt
+    end
+  end
+
+  def quit_game
+    begin
+      exit
+    rescue SystemExit
+      puts "Everybody quits, eventually..."
+    end
+  end
 end 
+
 
 
 
