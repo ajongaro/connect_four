@@ -1,12 +1,17 @@
+require './lib/board'
+require './lib/turn'
 class Game 
   attr_reader :board
+
   def initialize
-    @board = nil
-    main_menu_prompt
+    @board = Board.new
+    # main_menu_prompt
   end
 
   def game_play 
-    @board = Board.new
+    while game.board.search_for_winner == false && game.board.tie? == false
+      print_board
+    player_prompt
     # loop player / computer turn sequence and assessment
   end
 
@@ -35,7 +40,35 @@ class Game
       puts "Everybody quits, eventually..."
     end
   end
-end 
+
+  def player_prompt
+    puts "Please Select a Column: 'ABCDEFG'"
+    column_selection = gets.chomp.upcase
+    turn = Turn.new(column_selection, @board)
+
+    if turn.valid_column?
+      turn.drop_token(column_selection, "X") 
+    else
+      puts "Please Make a Valid Selection"
+      player_prompt
+    end
+  end
+
+  def computer_turn
+    array = ["A", "B", "C", "D", "E", "F", "G"]
+    turn = Turn.new(array.sample, @board)
+
+    if turn.valid_column?
+      turn.drop_token(column_selection, "O")
+    else
+      computer_turn
+    end
+  end
+
+  def print_board
+    @board.pretty_print
+  end
+end
 
 # LOOP START -----------------------------
 # Display game board

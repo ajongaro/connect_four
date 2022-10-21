@@ -1,6 +1,9 @@
 require './lib/game'
 
-Game.new
+game = Game.new
+game.main_menu_prompt
+puts "before pretty print"
+print game.board.pretty_print
 
 
 
