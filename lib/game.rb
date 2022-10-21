@@ -5,16 +5,14 @@ class Game
     main_menu_prompt
   end
 
-  def start_game
-    # Beginning of program
-    # welcome message 
-    # Add print laterChoice player quit or start
-    # create the board, and generate layout
+  def game_play 
     @board = Board.new
+    # loop player / computer turn sequence and assessment
   end
 
   def welcome_message
     "Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'q' to quit."
+    # consider just looping "Enter 'p' etc every failed start"
   end
 
   def main_menu_prompt
@@ -23,7 +21,7 @@ class Game
     if var.downcase == 'q'
       quit_game
     elsif var.downcase == 'p'
-      start_game
+      game_play 
     else
       puts "Invalid selection.\n\n"
       main_menu_prompt
@@ -38,9 +36,6 @@ class Game
     end
   end
 end 
-
-
-
 
 # LOOP START -----------------------------
 # Display game board
