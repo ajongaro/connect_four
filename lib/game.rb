@@ -23,10 +23,7 @@ class Game
         new_board
         return main_menu_prompt
       elsif @board.tie?
-        print_board
-        puts "\nTie Game!\n\n"
-        new_board
-        return main_menu_prompt 
+        tie_game
       end
 
       computer_turn
@@ -36,13 +33,17 @@ class Game
         new_board
         return main_menu_prompt 
       elsif @board.tie?
-        print_board
-        puts "\nTie Game!\n\n"
-        new_board
-        return main_menu_prompt 
+        tie_game
       end
       print_board
     end
+  end
+
+  def tie_game
+    print_board
+    puts "\nTie Game!\n\n"
+    new_board
+    return main_menu_prompt
   end
 
   def welcome_message
@@ -91,7 +92,7 @@ class Game
     column = @board.random_column 
     turn = Turn.new(column, @board)
 
-    if turn.valid_column?
+    if @board.test_column(column)
       turn.drop_token(column, "O")
     else
       computer_turn
