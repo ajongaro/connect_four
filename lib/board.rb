@@ -9,6 +9,10 @@ class Board
     create_layout
   end
 
+  def random_column
+    @header.split("").sample
+  end
+  
   # needs test
   def test_column(selection)
     @header.include?(selection)

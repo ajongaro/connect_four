@@ -44,7 +44,7 @@ class Game
   def main_menu_prompt
     puts welcome_message
     var = gets.chomp
-
+    puts "\n"
     if var.downcase == 'q'
       quit_game
     elsif var.downcase == 'p'
@@ -64,7 +64,7 @@ class Game
   end
 
   def player_prompt
-    print "Please Select a Column: 'ABCDEFG' > "
+    print "Please Select a Column: "
     column_selection = gets.chomp.upcase
     puts "\n"
     turn = Turn.new(column_selection, @board)
@@ -78,11 +78,11 @@ class Game
   end
 
   def computer_turn
-    array = ["A", "B", "C", "D", "E", "F", "G"]
-    turn = Turn.new(array.sample, @board)
+    column = @board.random_column 
+    turn = Turn.new(column, @board)
 
     if turn.valid_column?
-      turn.drop_token(array.sample, "O")
+      turn.drop_token(column, "O")
     else
       computer_turn
     end
