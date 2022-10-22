@@ -2,7 +2,7 @@ require './lib/game'
 
 game = Game.new
 game.main_menu_prompt
-print game.board.pretty_print
+
 
 
 
