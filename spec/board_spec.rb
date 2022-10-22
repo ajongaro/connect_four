@@ -119,11 +119,11 @@ RSpec.describe Board do
     end
   end
 
-  describe '#search_for_winner' do
+  describe '#winner?' do
     it 'returns false with no pieces played' do
       board.create_layout
       
-      expect(board.search_for_winner).to be false
+      expect(board.winner?).to be false
     end
 
     it 'returns true with 4 pieces horizontally' do
@@ -134,7 +134,7 @@ RSpec.describe Board do
       board.layout[:C1].add("X")
       board.layout[:D1].add("X")
       
-      expect(board.search_for_winner).to be true
+      expect(board.winner?).to be true
     end
 
     it 'returns true with 4 pieces vertically' do 
@@ -144,7 +144,7 @@ RSpec.describe Board do
       board.layout[:G3].add("O")
       board.layout[:G2].add("O")
        
-      expect(board.search_for_winner).to be true
+      expect(board.winner?).to be true
     end
 
     it 'returns true with 4 pieces diagonally' do
@@ -154,7 +154,7 @@ RSpec.describe Board do
       board.layout[:E3].add("O")
       board.layout[:D2].add("O")
 
-      expect(board.search_for_winner).to be true
+      expect(board.winner?).to be true
     end
   end
 

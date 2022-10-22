@@ -4,36 +4,45 @@ class Game
   attr_reader :board
 
   def initialize
-    @board = Board.new
+    @board = Board.new # remove this from here and generate new board in new_board
     # main_menu_prompt
   end
 
-  def game_play 
-    while @board.search_for_winner == false
-      print_board
+  def new_board 
+    @board = Board.new
+  end
 
+  def game_play 
+    print_board
+    while !@board.winner?
+      puts "\n"
       player_prompt
-      if @board.search_for_winner
-        p "You Win!"
-        break
-        #RETURN TO MAIN MENU
+      if @board.winner?
+        print_board
+        puts "\nYou Win!\n\n"
+        new_board
+        return main_menu_prompt
       elsif @board.tie?
-        p "Tie Game!"
-        break
-        #RETURN TO MAIN MENU
+        print_board
+        puts "\nTie Game!\n\n"
+        new_board
+        return main_menu_prompt 
       end
 
       computer_turn
-      if @board.search_for_winner
-        p "You Lose!"
-        break
-        #RETURN TO MAIN MENU
+      if @board.winner?
+        print_board
+        puts "\nYou Lose!\n\n"
+        new_board
+        return main_menu_prompt 
       elsif @board.tie?
-        p "Tie Game!"
-        break
+        print_board
+        puts "\nTie Game!\n\n"
+        new_board
+        return main_menu_prompt 
       end
+      print_board
     end
-    # loop player / computer turn sequence and assessment
   end
 
   def welcome_message
@@ -43,10 +52,11 @@ class Game
 
   def main_menu_prompt
     puts welcome_message
-    var = gets.chomp
-    if var.downcase == 'q'
+    input = gets.chomp
+    puts "\n"
+    if input.downcase == 'q'
       quit_game
-    elsif var.downcase == 'p'
+    elsif input.downcase == 'p'
       game_play 
     else
       puts "Invalid selection.\n\n"
@@ -63,8 +73,10 @@ class Game
   end
 
   def player_prompt
-    puts "Please Select a Column: 'ABCDEFG'"
+    print "Please Select a Column: "
+
     column_selection = gets.chomp.upcase
+    puts "\n"
     turn = Turn.new(column_selection, @board)
 
     if turn.valid_column?
@@ -76,11 +88,11 @@ class Game
   end
 
   def computer_turn
-    array = ["A", "B", "C", "D", "E", "F", "G"]
-    turn = Turn.new(array.sample, @board)
+    column = @board.random_column 
+    turn = Turn.new(column, @board)
 
     if turn.valid_column?
-      turn.drop_token(array.sample, "O")
+      turn.drop_token(column, "O")
     else
       computer_turn
     end

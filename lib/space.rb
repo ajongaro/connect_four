@@ -11,7 +11,5 @@ class Space
     @slot = token 
     @available = false
   end
-
-
 end
 

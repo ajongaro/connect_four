@@ -3,16 +3,25 @@ require './lib/space'
 class Board
   attr_reader :layout, :header
 
-  # HEADER = "ABCDEFG"
-
   def initialize
-    @layout = {}
+    @layout = {} # move this into create_layout method
     @header = "ABCDEFG" 
     create_layout
   end
 
+  def random_column
+    @header.split("").sample
+  end
+
+  # needs test - checks to see if col valid and top spot in col is avail
+  def test_column(selection)
+    @header.include?(selection) &&
+    @layout["#{selection}#{'1'}".to_sym].available
+  end
+
   # build the board into @layout
   def create_layout
+    @layout = {} # move this into create_layout method
     ("A".."G").to_a.each do |letter|
       (1..6).each do |number|
         @layout["#{letter}#{number}".to_sym] = Space.new
@@ -22,23 +31,11 @@ class Board
 
   # an array of strings to iterate through for "xxxx" or "oooo"
   def diag_wins
-    [
-    diag_1,
-    diag_2,
-    diag_3,
-    diag_4,
-    diag_5,
-    diag_6,
-    diag_7,
-    diag_8,
-    diag_9,
-    diag_10,
-    diag_11,
-    diag_12
-  ]
+    [ diag_1, diag_2, diag_3, diag_4, diag_5, diag_6, diag_7,
+    diag_8, diag_9, diag_10, diag_11, diag_12 ]
   end
 
-  def diag_win
+  def diag_win # should this be calculated from the board class or turn?
     diag_wins.each do |line|
       return true if line.include?("XXXX") || line.include?("OOOO")
     end
@@ -46,8 +43,8 @@ class Board
   end
 
   def tie?
-    return false if search_for_winner
-    if @layout.values.select { |value| value.available == true} == []
+    return false if winner?
+    if @layout.values.select { |value| value.available } == []
       return true
     end
   end
@@ -64,7 +61,7 @@ class Board
     array.join("")
   end
 
-  def search_for_winner
+  def winner?
     return true if horizontal_win
     return true if vertical_win
     return true if diag_win
@@ -142,5 +139,4 @@ class Board
   def diag_12
     "#{@layout[:D6].slot}#{@layout[:C5].slot}#{@layout[:B4].slot}#{@layout[:A3].slot}"
   end
-
 end
