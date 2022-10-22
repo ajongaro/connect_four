@@ -21,6 +21,7 @@ class Board
 
   # build the board into @layout
   def create_layout
+    @layout = {} # move this into create_layout method
     ("A".."G").to_a.each do |letter|
       (1..6).each do |number|
         @layout["#{letter}#{number}".to_sym] = Space.new
@@ -34,7 +35,7 @@ class Board
     diag_8, diag_9, diag_10, diag_11, diag_12 ]
   end
 
-  def diag_win
+  def diag_win # should this be calculated from the board class or turn?
     diag_wins.each do |line|
       return true if line.include?("XXXX") || line.include?("OOOO")
     end
@@ -42,8 +43,8 @@ class Board
   end
 
   def tie?
-    return false if search_for_winner
-    if @layout.values.select { |value| value.available == true} == []
+    return false if winner?
+    if @layout.values.select { |value| value.available } == []
       return true
     end
   end
@@ -60,7 +61,7 @@ class Board
     array.join("")
   end
 
-  def search_for_winner
+  def winner?
     return true if horizontal_win
     return true if vertical_win
     return true if diag_win
