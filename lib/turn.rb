@@ -6,27 +6,25 @@ class Turn
   end
 
   def valid_column?
-    return true if @board.header.include?(@selected_column) &&
-    @board.layout["#{@selected_column}#{'1'}".to_sym].available == true
-    false
+    @board.test_column(@selected_column) &&
+    @board.layout["#{@selected_column}#{'1'}".to_sym].available
   end
 
   def drop_token(selected_column, player_token)
-    
     key_input = 6.downto(1).map do |number|
       "#{selected_column}#{number}".to_sym
     end
 
     @board.layout.reverse_each do |key, value|
-      if key_input.include?(key) && value.available == true
-      value.add(player_token)
-      break
+      if key_input.include?(key) && value.available
+        value.add(player_token)
+        break
+      end
+    end
   end
 end
-end
 
 
-end
 
 
 # FLOW
@@ -45,7 +43,6 @@ end
 # Drops token if valid
 # Tries another space
 # drops in appropriate space   
-
 
 # DONE
 # player selects a column by letter

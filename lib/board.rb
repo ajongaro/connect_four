@@ -3,12 +3,15 @@ require './lib/space'
 class Board
   attr_reader :layout, :header
 
-  # HEADER = "ABCDEFG"
-
   def initialize
-    @layout = {}
+    @layout = {} # move this into create_layout method
     @header = "ABCDEFG" 
     create_layout
+  end
+
+  # needs test
+  def test_column(selection)
+    @header.include?(selection)
   end
 
   # build the board into @layout
@@ -22,20 +25,8 @@ class Board
 
   # an array of strings to iterate through for "xxxx" or "oooo"
   def diag_wins
-    [
-    diag_1,
-    diag_2,
-    diag_3,
-    diag_4,
-    diag_5,
-    diag_6,
-    diag_7,
-    diag_8,
-    diag_9,
-    diag_10,
-    diag_11,
-    diag_12
-  ]
+    [ diag_1, diag_2, diag_3, diag_4, diag_5, diag_6, diag_7,
+    diag_8, diag_9, diag_10, diag_11, diag_12 ]
   end
 
   def diag_win
@@ -142,5 +133,4 @@ class Board
   def diag_12
     "#{@layout[:D6].slot}#{@layout[:C5].slot}#{@layout[:B4].slot}#{@layout[:A3].slot}"
   end
-
 end

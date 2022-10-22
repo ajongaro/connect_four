@@ -11,7 +11,7 @@ class Game
   def game_play 
     while @board.search_for_winner == false
       print_board
-
+      puts "\n"
       player_prompt
       if @board.search_for_winner
         p "You Win!"
@@ -44,6 +44,7 @@ class Game
   def main_menu_prompt
     puts welcome_message
     var = gets.chomp
+
     if var.downcase == 'q'
       quit_game
     elsif var.downcase == 'p'
@@ -63,8 +64,9 @@ class Game
   end
 
   def player_prompt
-    puts "Please Select a Column: 'ABCDEFG'"
+    print "Please Select a Column: 'ABCDEFG' > "
     column_selection = gets.chomp.upcase
+    puts "\n"
     turn = Turn.new(column_selection, @board)
 
     if turn.valid_column?
