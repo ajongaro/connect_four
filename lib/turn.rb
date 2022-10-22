@@ -6,6 +6,7 @@ class Turn
   end
 
   def valid_column?
+    return false if @selected_column.empty?
     @board.test_column(@selected_column)
   end
 
@@ -15,8 +16,8 @@ class Turn
     end
 
     @board.layout.reverse_each do |key, value|
-      if key_input.include?(key) && value.available
-        value.add(player_token)
+      if key_input.include?(key) && value == "."
+        @board.layout[key] = player_token
         break
       end
     end

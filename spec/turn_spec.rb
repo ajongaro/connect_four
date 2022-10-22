@@ -1,5 +1,4 @@
 require './lib/board'
-require './lib/space'
 require './lib/turn'
 
 RSpec.describe Turn do
@@ -31,7 +30,7 @@ RSpec.describe Turn do
 
       expect(turn.valid_column?).to be true
 
-      board.layout[:A1].add("X")
+      board.layout[:A1] = "X"
       expect(turn.valid_column?).to be false
     end
 
@@ -47,13 +46,13 @@ RSpec.describe Turn do
       turn = Turn.new("A", board)
       turn.drop_token("A", "X")
 
-      expect(board.layout[:A6].slot).to eq("X")
+      expect(board.layout[:A6]).to eq("X")
 
       turn_2 = Turn.new("A", board)
       turn.drop_token("A", "O")
       
-      expect(board.layout[:A5].slot).to eq("O")
-      expect(board.layout[:A6].slot).to eq("X")
+      expect(board.layout[:A5]).to eq("O")
+      expect(board.layout[:A6]).to eq("X")
     end
   end
 end

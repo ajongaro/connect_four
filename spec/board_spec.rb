@@ -1,4 +1,3 @@
-require './lib/space'
 require './lib/board'
 
 RSpec.describe Board do
@@ -29,7 +28,7 @@ RSpec.describe Board do
 
     it 'builds a hash with the correct key values .' do 
       board.create_layout
-      values_output = board.layout.values.map(&:slot)
+      values_output = board.layout.values
       values_expected = [".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."]
 
       expect(values_output).to eq(values_expected)
@@ -129,30 +128,30 @@ RSpec.describe Board do
     it 'returns true with 4 pieces horizontally' do
       board.create_layout
 
-      board.layout[:A1].add("X")
-      board.layout[:B1].add("X")
-      board.layout[:C1].add("X")
-      board.layout[:D1].add("X")
+      board.layout[:A1] = "X"
+      board.layout[:B1] = "X"
+      board.layout[:C1] = "X"
+      board.layout[:D1] = "X"
       
       expect(board.winner?).to be true
     end
 
     it 'returns true with 4 pieces vertically' do 
       board.create_layout 
-      board.layout[:G5].add("O")
-      board.layout[:G4].add("O")
-      board.layout[:G3].add("O")
-      board.layout[:G2].add("O")
+      board.layout[:G5] = "O"
+      board.layout[:G4] = "O"
+      board.layout[:G3] = "O"
+      board.layout[:G2] = "O"
        
       expect(board.winner?).to be true
     end
 
     it 'returns true with 4 pieces diagonally' do
       board.create_layout 
-      board.layout[:G5].add("O")
-      board.layout[:F4].add("O")
-      board.layout[:E3].add("O")
-      board.layout[:D2].add("O")
+      board.layout[:G5] = "O"
+      board.layout[:F4] = "O"
+      board.layout[:E3] = "O"
+      board.layout[:D2] = "O"
 
       expect(board.winner?).to be true
     end
@@ -166,9 +165,9 @@ RSpec.describe Board do
      
       board.layout.each do |key,value|
         if x_array.include? key
-          value.add("X")
+          board.layout[key] = "X"
         else
-          value.add("O")
+          board.layout[key] = "O"
         end
       end
 
@@ -176,6 +175,7 @@ RSpec.describe Board do
     end
   end
 end
+
 
 
 

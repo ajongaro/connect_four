@@ -1,15 +1,116 @@
-require './lib/game'
+# require './lib/game'
 
-game = Game.new
-game.main_menu_prompt
-
-
+# game = Game.new
+# game.main_menu_prompt
 
 
 
 
 
+# def diag_from_left
+  
 
+
+# end
+
+
+# A4..D1
+# A5..E1
+# A6..F1
+# B6..G1
+# C6..G2
+# D6..G3
+
+# G4..D1
+# G5..C1
+# G6..B1
+# F6..A1
+# E6..A2
+# D6..A3
+
+# --> 
+
+# A1..F6
+# A2..E6
+# A3..D6        iterate A1-A6, code way to find diagonal between there and end cells (F6E6D6, D1E1F1)
+# A4..D1
+# A5..E1
+# A6..F1
+# G1..B6        iterate G1-G6 code way to find diagonal between there and end cells (B6C6D6, D1C1B1)
+# G2..C6
+# G3..D6
+# G4..D1
+# G5..C1
+# G6..B1
+
+
+# if number in first cell is < number in last cell, iterate down in numbers
+# if number in first cell is > number in last cell iterate up
+# if letter in first cell is > letter in last cell, iterate down
+# if letter in first cell is < letter in last cell, iterate up
+
+# so if A6..F1, iterate UP in letters and DOWN in numbers ie A B C D E F, 6 5 4 3 2 1
+
+# 
+# def upright_checker
+# all_slots = []
+# all_slots << start_coord[letter.next][number + 1].slot 
+# all_slots.include("XXXX") || all_slots.include ("OOOO")
+
+# [A1..A3, B6, D6, E6].map do |start_coord|
+# start_coord.upright_checker
+
+# repeat this^ for up left checker, with dif array
+
+# MAKE THIS WITH CODE AND WE BALLLLLLINNNNN
+
+def diag_1
+    "#{@layout[:A4]}#{@layout[:B3]}#{@layout[:C2]}#{@layout[:D1]}"
+  end
+
+  def diag_2
+    "#{@layout[:A5]}#{@layout[:B4]}#{@layout[:C3]}#{@layout[:D2]}#{@layout[:E1]}"
+  end
+
+  def diag_3
+    "#{@layout[:A6]}#{@layout[:B5]}#{@layout[:C4]}#{@layout[:D3]}#{@layout[:E2]}#{@layout[:F1]}"
+  end
+
+  def diag_4
+    "#{@layout[:B6]}#{@layout[:C5]}#{@layout[:D4]}#{@layout[:E3]}#{@layout[:F2]}#{@layout[:G1]}"
+  end
+
+  def diag_5
+    "#{@layout[:C6]}#{@layout[:D5]}#{@layout[:E4]}#{@layout[:F3]}#{@layout[:G2]}"
+  end
+
+  def diag_6
+    "#{@layout[:D6]}#{@layout[:E5]}#{@layout[:F4]}#{@layout[:G3]}"
+  end
+
+  def diag_7
+    "#{@layout[:G4]}#{@layout[:F3]}#{@layout[:E2]}#{@layout[:D1]}"
+  end
+
+  def diag_8
+    "#{@layout[:G5]}#{@layout[:F4]}#{@layout[:E3]}#{@layout[:D2]}#{@layout[:C1]}"
+  end
+
+  def diag_9
+    "#{@layout[:G6]}#{@layout[:F5]}#{@layout[:E4]}#{@layout[:D3]}#{@layout[:C2]}#{@layout[:B1]}"
+  end
+
+  def diag_10
+    "#{@layout[:F6]}#{@layout[:E5]}#{@layout[:D4]}#{@layout[:C3]}#{@layout[:B2]}#{@layout[:A1]}"
+  end
+
+  def diag_11
+    "#{@layout[:E6]}#{@layout[:D5]}#{@layout[:C4]}#{@layout[:B3]}#{@layout[:A2]}"
+  end
+
+  def diag_12
+    "#{@layout[:D6]}#{@layout[:C5]}#{@layout[:B4]}#{@layout[:A3]}"
+  end
 
 
 
