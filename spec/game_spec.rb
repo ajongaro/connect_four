@@ -14,7 +14,7 @@ RSpec.describe Game do
   
     it 'creates a board layout' do
       expect(game.board.layout).to be_a(Hash)
-      expect(game.board.layout[:A1]).to be_a(Space)
+      expect(game.board.layout[:A1]).to eq(".")
     end
   end
 
@@ -28,12 +28,5 @@ RSpec.describe Game do
     describe '#prompt_for_input' do
       # we can't test gets.chomp
     end
-  end
-
-  describe 'player_turn' do
-    xit 'prompts player for column selection' do
-      expect(game.player_prompt).to eq("Please Select a Column: 'ABCDEFG'")
-    end
-
   end
 end
