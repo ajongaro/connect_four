@@ -23,7 +23,10 @@ class Game
         new_board
         return main_menu_prompt
       elsif @board.tie?
-        tie_game
+        print_board
+        puts "\nTie Game!\n\n"
+        new_board
+        return main_menu_prompt
       end
 
       computer_turn
@@ -33,18 +36,21 @@ class Game
         new_board
         return main_menu_prompt 
       elsif @board.tie?
-        tie_game
+        print_board
+        puts "\nTie Game!\n\n"
+        new_board
+        return main_menu_prompt
       end
       print_board
     end
   end
 
-  def tie_game
-    print_board
-    puts "\nTie Game!\n\n"
-    new_board
-    return main_menu_prompt
-  end
+  # def tie_game
+  #   print_board
+  #   puts "\nTie Game!\n\n"
+  #   new_board
+  #   return main_menu_prompt
+  # end
 
   def welcome_message
     "Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'q' to quit."
