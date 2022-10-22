@@ -12,10 +12,11 @@ class Board
   def random_column
     @header.split("").sample
   end
-  
-  # needs test
+
+  # needs test - checks to see if col valid and top spot in col is avail
   def test_column(selection)
-    @header.include?(selection)
+    @header.include?(selection) &&
+    @layout["#{selection}#{'1'}".to_sym].available
   end
 
   # build the board into @layout
