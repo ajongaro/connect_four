@@ -1,6 +1,6 @@
 
 class Board
-  attr_reader :layout, :header
+  attr_reader :layout, :header, :diag_array
 
   def initialize
     @layout = {} # move this into create_layout method
@@ -15,7 +15,6 @@ class Board
     @header.split("").sample
   end
 
-  # needs test - checks to see if col valid and top spot in col is avail
   def test_column(selection)
       @header.include?(selection) &&
       @layout["#{selection}#{'1'}".to_sym].include?(".")

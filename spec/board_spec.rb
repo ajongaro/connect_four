@@ -100,6 +100,72 @@ RSpec.describe Board do
       expect(board.tie?).to be true 
     end
   end
+
+  describe 'test_column' do
+    it 'checks top row of column for space to change value' do
+      board.layout[:A6] = "X"
+      board.layout[:A5] = "X"
+      board.layout[:A4] = "X"
+      board.layout[:A3] = "X"
+      board.layout[:A2] = "X"
+      board.layout[:A1] = "X"
+
+      expect(board.test_column("A")).to eq(false)
+    end
+
+    it 'returns true when top row of column is empty' do
+      board.layout[:G6] = "X"
+      board.layout[:G5] = "X"
+      board.layout[:G4] = "X"
+      board.layout[:G3] = "X"
+      board.layout[:G2] = "X"
+
+      expect(board.test_column("G")).to eq(true)
+    end
+  end
+
+  describe 'combine method' do
+    it 'finds either the next or previous letter alphabetically depending on argument' do
+      expect(board.combine("C", "up")).to eq("D")
+      expect(board.combine("G", "down")).to eq("F")
+    end
+  end
+
+  describe 'generate_diagonal_array' do
+    it 'creates an array with the values present along a diagonal and puts into storage' do
+      board.layout[:A6] = "X"
+      board.layout[:B5] = "O"
+      board.layout[:C4] = "."
+      board.layout[:D3] = "X"
+      board.layout[:E2] = "."
+      board.layout[:F1] = "O"
+      board.generate_diagonal_array(:A6, "up")
+
+      expect(board.diag_array).to eq(["X", "O", ".", "X", ".", "O", "NOPE"])
+    end
+  end
+
+  describe 'diagonal_win' do
+    it 'can find diagonal win conditions up and to the right' do
+      board.layout[:B6] = "O"
+      board.layout[:C5] = "X"
+      board.layout[:D4] = "X"
+      board.layout[:E3] = "X"
+      board.layout[:F2] = "X"
+
+      expect(board.diagonal_win).to be true
+
+    end
+
+    it 'can find diagonal win conditions up and to the left' do
+      board.layout[:G5] = "O"
+      board.layout[:F4] = "O"
+      board.layout[:E3] = "O"
+      board.layout[:D2] = "O"
+
+      expect(board.diagonal_win).to be true
+    end
+  end
 end
 
 
