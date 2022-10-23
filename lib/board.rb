@@ -6,6 +6,9 @@ class Board
     @layout = {} # move this into create_layout method
     @header = "ABCDEFG" 
     create_layout
+    @diag_start_keys = [:A4, :A5, :A6, :B6, :C6, :D6]
+    @diag_start_keys2 = [:G4, :G5, :G6, :F6, :E6, :D6]
+    @diag_array = []
   end
 
   def random_column
@@ -28,17 +31,11 @@ class Board
     end
   end
 
-  # an array of strings to iterate through for "xxxx" or "oooo"
-  def diag_wins
-    [ diag_1, diag_2, diag_3, diag_4, diag_5, diag_6, diag_7,
-    diag_8, diag_9, diag_10, diag_11, diag_12 ]
-  end
-
-  def diag_win # should this be calculated from the board class or turn?
-    diag_wins.each do |line|
-      return true if line.include?("XXXX") || line.include?("OOOO")
-    end
-    false # if no connect 4's are found
+  def winner?
+    return true if horizontal_win
+    return true if vertical_win
+    return true if diagonal_win
+    false
   end
 
   def tie?
@@ -58,13 +55,6 @@ class Board
       array << "\n"
     end
     array.join("")
-  end
-
-  def winner?
-    return true if horizontal_win
-    return true if vertical_win
-    return true if diag_win
-    false
   end
 
   def horizontal_win 
@@ -91,51 +81,43 @@ class Board
     false
   end
 
-  def diag_1
-    "#{@layout[:A4]}#{@layout[:B3]}#{@layout[:C2]}#{@layout[:D1]}"
+  def diagonal_win
+    @diag_start_keys.each do |key|
+      generate_diagonal_array(key, "up")
+    end
+ 
+    @diag_start_keys2.each do |key|
+      generate_diagonal_array(key, "down")
+    end
+
+    diag_array = @diag_array.join("")
+
+    diag_array.include?("XXXX") || diag_array.include?("OOOO")
   end
 
-  def diag_2
-    "#{@layout[:A5]}#{@layout[:B4]}#{@layout[:C3]}#{@layout[:D2]}#{@layout[:E1]}"
+  def generate_diagonal_array(start, direction)
+    current_location = start
+    until @layout[current_location].nil?
+      @diag_array << @layout[current_location]
+      current_location = start.to_s.split("")
+      current_location[0] = combine(current_location[0], direction)
+      current_location[1] = (current_location[1].to_i - 1).to_s
+      next_location = current_location.join("").to_sym
+        if @layout[next_location].nil?
+          @diag_array << "NOPE"
+          break
+        end
+      generate_diagonal_array(next_location, direction)
+    end
+    
   end
 
-  def diag_3
-    "#{@layout[:A6]}#{@layout[:B5]}#{@layout[:C4]}#{@layout[:D3]}#{@layout[:E2]}#{@layout[:F1]}"
+  def combine(loc, direction)
+    if direction == "up"
+      return (loc.ord + 1).chr
+    elsif direction == "down"
+      return (loc.ord - 1).chr 
+    end
   end
 
-  def diag_4
-    "#{@layout[:B6]}#{@layout[:C5]}#{@layout[:D4]}#{@layout[:E3]}#{@layout[:F2]}#{@layout[:G1]}"
-  end
-
-  def diag_5
-    "#{@layout[:C6]}#{@layout[:D5]}#{@layout[:E4]}#{@layout[:F3]}#{@layout[:G2]}"
-  end
-
-  def diag_6
-    "#{@layout[:D6]}#{@layout[:E5]}#{@layout[:F4]}#{@layout[:G3]}"
-  end
-
-  def diag_7
-    "#{@layout[:G4]}#{@layout[:F3]}#{@layout[:E2]}#{@layout[:D1]}"
-  end
-
-  def diag_8
-    "#{@layout[:G5]}#{@layout[:F4]}#{@layout[:E3]}#{@layout[:D2]}#{@layout[:C1]}"
-  end
-
-  def diag_9
-    "#{@layout[:G6]}#{@layout[:F5]}#{@layout[:E4]}#{@layout[:D3]}#{@layout[:C2]}#{@layout[:B1]}"
-  end
-
-  def diag_10
-    "#{@layout[:F6]}#{@layout[:E5]}#{@layout[:D4]}#{@layout[:C3]}#{@layout[:B2]}#{@layout[:A1]}"
-  end
-
-  def diag_11
-    "#{@layout[:E6]}#{@layout[:D5]}#{@layout[:C4]}#{@layout[:B3]}#{@layout[:A2]}"
-  end
-
-  def diag_12
-    "#{@layout[:D6]}#{@layout[:C5]}#{@layout[:B4]}#{@layout[:A3]}"
-  end
 end
