@@ -124,14 +124,14 @@ RSpec.describe Board do
     end
   end
 
-  describe 'combine method' do
+  describe 'increment method' do
     it 'finds either the next or previous letter alphabetically depending on argument' do
-      expect(board.combine("C", "up")).to eq("D")
-      expect(board.combine("G", "down")).to eq("F")
+      expect(board.increment("C", "up")).to eq("D")
+      expect(board.increment("G", "down")).to eq("F")
     end
   end
 
-  describe 'generate_diagonal_array' do
+  describe 'generate_diag_array' do
     it 'creates an array with the values present along a diagonal and puts into storage' do
       board.layout[:A6] = "X"
       board.layout[:B5] = "O"
@@ -139,7 +139,7 @@ RSpec.describe Board do
       board.layout[:D3] = "X"
       board.layout[:E2] = "."
       board.layout[:F1] = "O"
-      board.generate_diagonal_array(:A6, "up")
+      board.generate_diag_array(:A6, "up")
 
       expect(board.diag_array).to eq(["X", "O", ".", "X", ".", "O", "NOPE"])
     end
@@ -154,7 +154,6 @@ RSpec.describe Board do
       board.layout[:F2] = "X"
 
       expect(board.diagonal_win).to be true
-
     end
 
     it 'can find diagonal win conditions up and to the left' do
@@ -165,6 +164,13 @@ RSpec.describe Board do
 
       expect(board.diagonal_win).to be true
     end
+  end
+
+  describe 'random_column' do
+    it 'generates a random valid column letter' do
+      expect(board.random_column).to be_between("A", "G").inclusive
+    end
+
   end
 end
 

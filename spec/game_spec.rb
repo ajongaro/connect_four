@@ -11,6 +11,10 @@ RSpec.describe Game do
     it 'creates a board' do
       expect(game.board).to be_a(Board)    
     end
+
+    it 'has a method to create a new board' do
+      expect(game.new_board).to be_a(Board)
+    end
   
     it 'creates a board layout' do
       expect(game.board.layout).to be_a(Hash)
@@ -23,10 +27,6 @@ RSpec.describe Game do
       it 'prints out welcome message' do
         expect(game.welcome_message).to eq("Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'q' to quit.")
       end
-    end
-    
-    describe '#prompt_for_input' do
-      # we can't test gets.chomp
     end
   end
 end

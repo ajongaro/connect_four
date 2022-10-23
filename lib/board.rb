@@ -9,7 +9,8 @@ class Board
     @letters = ["A", "B", "C", "D", "E", "F", "G"]
     @diag_start_keys = [:A4, :A5, :A6, :B6, :C6, :D6]
     @diag_start_keys2 = [:G4, :G5, :G6, :F6, :E6, :D6]
-
+    @diag_array = []
+    
     create_layout
   end
 
@@ -85,7 +86,6 @@ class Board
   end
 
   def diagonal_win
-    @diag_array = []
     @diag_start_keys.each do |key|
       generate_diag_array(key, "up")
     end
