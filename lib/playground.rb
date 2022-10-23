@@ -31,8 +31,8 @@ def combine(loc, direction)
   end
 end
 
-starting_keys = [:A4, :A5, :A6, :B6, :C6, :D6]
-second_keys = [:G4, :G5, :G6, :F6, :E6, :D6]
+diag_start_keys = [:A4, :A5, :A6, :B6, :C6, :D6]
+diag_start_keys2 = [:G4, :G5, :G6, :F6, :E6, :D6]
 
 starting_keys.each do |key|
   generate_diagonal_array(key, "up")
