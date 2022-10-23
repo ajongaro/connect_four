@@ -1,6 +1,6 @@
 
 class Board
-  attr_reader :layout, :header
+  attr_reader :layout, :header, :diag_array
 
   def initialize
     @header = "ABCDEFG" 
