@@ -9,7 +9,6 @@ class Game
     @name_2 = ""
     @player_1_token = "X"
     @player_2_token = "O"
-    two_player_prompt
   end
 
   def new_board 
