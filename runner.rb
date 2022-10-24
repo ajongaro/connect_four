@@ -1,3 +1,3 @@
 require './lib/game'
 
-Game.new.main_menu_prompt
+Game.new
