@@ -5,6 +5,9 @@ class Game
 
   def initialize
     @board = Board.new # remove this from here and generate new board in new_board
+    @name_1 = ""
+    @name_2 = ""
+    two_player_prompt
   end
 
   def new_board 
@@ -13,6 +16,38 @@ class Game
 
   def print_board
     print @board.pretty_print
+  end
+
+  def two_player_prompt
+    puts "Select number of human players, '1' or '2' and press Enter"
+    input = gets.chomp
+    if input == '1'
+      main_menu_prompt
+    elsif input == '2'
+      two_player_names
+    else
+      puts "Invalid selection.\n\n"
+      two_player_prompt
+    end
+  end
+
+  def two_player_names
+    puts "Player 1 please input name and press Enter"
+    @name_1 = gets.chomp
+    second_name_choice
+  end
+
+  def second_name_choice
+      puts "Player 2 please input name and press Enter"
+    name_choice = gets.chomp
+    if name_choice != @name_1
+      @name_2 = name_choice
+    else
+      puts "Please select a different player name"
+      second_name_choice
+    end
+    puts "#{@name_1} goes first, and will use X, #{@name_2} will go second and place O"
+    two_player_gameplay
   end
 
   def welcome_message
