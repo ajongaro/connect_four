@@ -4,11 +4,7 @@ class Game
   attr_reader :board
 
   def initialize
-    @board = Board.new # remove this from here and generate new board in new_board
-    @name_1 = ""
-    @name_2 = ""
-    @player_1_token = "X"
-    @player_2_token = "O"
+    new_board
   end
 
   def new_board 
@@ -25,6 +21,8 @@ class Game
     if input == '1'
       main_menu_prompt
     elsif input == '2'
+      @player_1_token = "X"
+      @player_2_token = "O"
       two_player_names
     else
       puts "Invalid selection.\n\n"
@@ -138,8 +136,15 @@ class Game
     end
   end
 
-  def two_player_gameplay
+  def winning_player(turn_count)
+    if turn_count.odd? 
+      @name_1
+    else
+      @name_2
+    end
+  end
 
+  def two_player_gameplay
     until @board.winner?
       puts "\n"
       turn_count = 1
@@ -202,11 +207,4 @@ class Game
     end
   end
 
-  def winning_player(turn_count)
-    if turn_count.odd? 
-      @name_1
-    else
-      @name_2
-    end
-  end
 end
