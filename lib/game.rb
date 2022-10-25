@@ -17,14 +17,16 @@ class Game
   end
 
   def two_player_prompt
-    puts "Select number of human players: '1' or '2' and press Enter"
+    puts "Select number of human players: '1' or '2' and press Enter\n or select 'back' to return to main menu"
     input = gets.chomp
     if input == "1"
-      main_menu_prompt
+      game_play
     elsif input == "2"
       @player_1_token = "X"
       @player_2_token = "O"
       two_player_names
+    elsif input == "back"
+      main_menu_prompt
     else
       puts "Invalid selection.\n\n"
       two_player_prompt
@@ -61,7 +63,7 @@ class Game
     if input.downcase == "q"
       quit_game
     elsif input.downcase == "p"
-      game_play
+      two_player_prompt
     else
       puts "Invalid selection.\n\n"
       main_menu_prompt
@@ -104,7 +106,7 @@ class Game
 
   def game_play
     print_board
-
+    puts "You go first and will place X"
     until @board.winner?
       puts "\n"
       player_prompt

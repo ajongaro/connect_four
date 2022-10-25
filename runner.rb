@@ -1,3 +1,3 @@
 require './lib/game'
 
-Game.new.two_player_prompt
+Game.new.main_menu_prompt
