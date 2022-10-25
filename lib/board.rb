@@ -1,4 +1,3 @@
-
 class Board
   attr_reader :layout, :header, :diag_array
 
@@ -14,15 +13,6 @@ class Board
     create_layout
   end
 
-  def random_column
-    @header.split("").sample
-  end
-
-  def test_column(selection)
-      @header.include?(selection) &&
-      @layout["#{selection}#{'1'}".to_sym].include?(".")
-  end
-
   def create_layout
     @layout = {} 
     @letters.each do |letter|
@@ -30,6 +20,15 @@ class Board
         @layout["#{letter}#{number}".to_sym] = "."
       end
     end
+  end
+
+  def random_column
+    @header.split("").sample
+  end
+
+  def test_column(selection)
+      @header.include?(selection) &&
+      @layout["#{selection}#{'1'}".to_sym].include?(".")
   end
 
   def winner?
