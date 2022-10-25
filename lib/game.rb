@@ -1,13 +1,14 @@
 require './lib/board'
 require './lib/turn'
-class Game 
+
+class Game
   attr_reader :board
 
   def initialize
     new_board
   end
 
-  def new_board 
+  def new_board
     @board = Board.new
   end
 
@@ -18,9 +19,9 @@ class Game
   def two_player_prompt
     puts "Select number of human players: '1' or '2' and press Enter"
     input = gets.chomp
-    if input == '1'
+    if input == "1"
       main_menu_prompt
-    elsif input == '2'
+    elsif input == "2"
       @player_1_token = "X"
       @player_2_token = "O"
       two_player_names
@@ -37,7 +38,7 @@ class Game
   end
 
   def second_name_choice
-      puts "Player 2 please input name and press Enter"
+    puts "Player 2 please input name and press Enter"
     name_choice = gets.chomp
     if name_choice != @name_1
       @name_2 = name_choice
@@ -57,10 +58,10 @@ class Game
     puts welcome_message
     input = gets.chomp
     puts "\n"
-    if input.downcase == 'q'
+    if input.downcase == "q"
       quit_game
-    elsif input.downcase == 'p'
-      game_play 
+    elsif input.downcase == "p"
+      game_play
     else
       puts "Invalid selection.\n\n"
       main_menu_prompt
@@ -76,14 +77,14 @@ class Game
   end
 
   def player_prompt(token = "X")
-    print "Please select a column: "
+    puts "Please select a column:"
 
     column_selection = gets.chomp.upcase
     puts "\n"
     turn = Turn.new(column_selection, @board)
 
     if turn.valid_column?
-      turn.drop_token(column_selection, token) 
+      turn.drop_token(column_selection, token)
     else
       puts "Please make a valid selection"
       player_prompt(token)
@@ -91,7 +92,7 @@ class Game
   end
 
   def computer_turn
-    column = @board.random_column 
+    column = @board.random_column
     turn = Turn.new(column, @board)
 
     if @board.test_column(column)
@@ -100,23 +101,20 @@ class Game
       computer_turn
     end
   end
-  
-  def game_play 
+
+  def game_play
     print_board
 
-    while !@board.winner?
+    until @board.winner?
       puts "\n"
       player_prompt
       if @board.winner?
         print_board
         puts "\nYou Win!\n\n"
         new_board
-        return main_menu_prompt
+        return two_player_prompt
       elsif @board.tie?
-        print_board
-        puts "\nTie Game!\n\n"
-        new_board
-        return main_menu_prompt
+        two_player_tie_end
       end
 
       computer_turn
@@ -125,19 +123,16 @@ class Game
         print_board
         puts "\nYou Lose!\n\n"
         new_board
-        return main_menu_prompt 
+        return two_player_prompt
       elsif @board.tie?
-        print_board
-        puts "\nTie Game!\n\n"
-        new_board
-        return main_menu_prompt
+        two_player_tie_end
       end
       print_board
     end
   end
 
   def winning_player(turn_count)
-    if turn_count.odd? 
+    if turn_count.odd?
       @name_1
     else
       @name_2
@@ -149,57 +144,30 @@ class Game
       puts "\n"
       turn_count = 1
       player_turn(turn_count)
-      
-      if @board.winner?
-        print_board
-        puts "\n#{winning_player(turn_count)} wins!"
-        new_board
-        return two_player_prompt
-        break
-      elsif @board.tie?
-        print_board
-        puts "\nTie Game!\n\n"
-        new_board
-        return two_player_prompt
-        break
-      end
       break
     end
   end
 
   def player_turn(turn_count)
+    print_board
     if turn_count.odd?
-      print_board
-      puts "#{@name_1}"
+      puts @name_1.to_s
       player_prompt
         if @board.winner?
-          print_board
-          puts "\n#{winning_player(turn_count)} wins!"
-          new_board
-          return two_player_prompt
+          two_player_winner_end(turn_count)
         elsif @board.tie?
-          print_board
-          puts "\nTie Game!\n\n"
-          new_board
-          return two_player_prompt
+          two_player_tie_end
         else
           turn_count += 1
           player_turn(turn_count)
         end
       else
-      print_board
-      puts "#{@name_2}"
+      puts @name_2.to_s
       player_prompt("O")
         if @board.winner?
-          print_board
-          puts "\n#{winning_player(turn_count)} wins!"
-          new_board
-          return two_player_prompt
+          two_player_winner_end(turn_count)
         elsif @board.tie?
-          print_board
-          puts "\nTie Game!\n\n"
-          new_board
-          return two_player_prompt
+          two_player_tie_end
         else
           turn_count += 1
           player_turn(turn_count)
@@ -207,4 +175,17 @@ class Game
     end
   end
 
+  def two_player_winner_end(turn_count)
+    print_board
+    puts "\n#{winning_player(turn_count)} wins!"
+    new_board
+    return two_player_prompt
+  end
+
+  def two_player_tie_end
+    print_board
+    puts "\nTie Game!\n\n"
+    new_board
+    return two_player_prompt
+  end
 end
