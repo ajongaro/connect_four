@@ -25,7 +25,7 @@ RSpec.describe Game do
   describe '#start_game' do
     describe '#welcome_message' do
       it 'prints out welcome message' do
-        expect(game.welcome_message).to eq("Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'h' for Hall of Fame. Enter 'q' to quit.")
+        expect(game.welcome_message).to eq("Welcome to CONNECT FOUR\n\nEnter 'p' to play. Enter 'h' for Hall of Fame. Enter 'q' to quit.")
       end
     end
   end
