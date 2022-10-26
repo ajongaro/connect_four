@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-require "connect_four"
 
 SimpleCov.start
 
