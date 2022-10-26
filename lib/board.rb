@@ -2,14 +2,13 @@ class Board
   attr_reader :layout, :header, :diag_array
 
   def initialize
-    @header = "ABCDEFG" 
-    @numbers = [1, 2, 3, 4, 5, 6] 
+    @header = "ABCDEFG"
+    @numbers = [1, 2, 3, 4, 5, 6]
     @r_numbers = [6, 5, 4, 3, 2, 1]
     @letters = ["A", "B", "C", "D", "E", "F", "G"]
     @diag_start_keys = [:A4, :A5, :A6, :B6, :C6, :D6]
     @diag_start_keys2 = [:G4, :G5, :G6, :F6, :E6, :D6]
     @diag_array = []
-    
     create_layout
   end
 
@@ -27,7 +26,8 @@ class Board
   end
 
   def test_column(selection)
-      @header.include?(selection) &&
+    return false if selection.length != 1
+      @header.include?(selection) && 
       @layout["#{selection}#{'1'}".to_sym].include?(".")
   end
 
@@ -60,23 +60,23 @@ class Board
     string.include?("XXXX") || string.include?("OOOO")
   end
 
-  def horizontal_win 
+  def horizontal_win
     line = []
     @r_numbers.each do |number|
       @letters.each do |letter|
-         line << @layout["#{letter}#{number}".to_sym] 
+        line << @layout["#{letter}#{number}".to_sym]
       end
-      return true if check_for_four_in(line) 
+      return true if check_for_four_in(line)
       line.clear
     end
     false
   end
 
-  def vertical_win 
+  def vertical_win
     line = []
     @letters.each do |letter|
       @r_numbers.each do |number|
-         line << @layout["#{letter}#{number}".to_sym]
+        line << @layout["#{letter}#{number}".to_sym]
       end
       return true if check_for_four_in(line) 
       line.clear
@@ -101,7 +101,7 @@ class Board
     if direction == "up"
       (letter.ord + 1).chr
     elsif direction == "down"
-      (letter.ord - 1).chr 
+      (letter.ord - 1).chr
     end
   end
 
