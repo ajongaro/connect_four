@@ -1,5 +1,6 @@
 class Turn
   attr_reader :selected_column
+  
   def initialize(selected_column, board)
     @selected_column = selected_column
     @board = board
