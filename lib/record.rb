@@ -80,28 +80,4 @@ class Record
 
 end
 
-record = Record.new
-record.printer
-record.add_result_for("Brady","win")
-record.add_result_for("Brady","win")
-record.add_result_for("Anthony","win")
-record.add_result_for("Anthony","lose")
-record.add_result_for("Anthony","tie")
-record.add_result_for("Anthony","win")
-record.add_result_for("Thomas","win")
-record.add_result_for("Timmy","lose")
-record.add_result_for("Jimmy","lose")
-record.printer
-p record.win_percentage
-p record.display_hof
-
-
-# player_name,wins,losses,ties
-# Anthony,1,1,0
-# Brady,2,1,1
-# Thomas,3,4,1
-
-
-
-
-# player_name,games_started,wins,losses
+# remember to call write_file at the end of the game?

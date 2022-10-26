@@ -6,14 +6,14 @@ RSpec.describe Record do
       record = Record.new
     end
 
-    xit 'loads record.txt' do 
+    it 'loads record.txt' do 
       record = Record.new
       expect(record.file).to be_a(File)
     end
   end
   
   describe '#parse' do
-    xit 'populates data with csv as array' do
+    it 'populates data with csv as array' do
       record = Record.new
       record.parse
 
@@ -22,16 +22,15 @@ RSpec.describe Record do
   end
 
   describe '#player_exists?' do 
-    xit 'checks to see if player exists' do
+    it 'checks to see if player exists' do
       record = Record.new
-      record.parse
-
+        
       expect(record.player_exists?("Anthony")).to be true
     end
   end
 
   describe '#printer' do
-    xit 'prints' do
+    it 'prints' do
       record = Record.new
       record.printer
       record.update_record("Brady","win")
@@ -40,7 +39,7 @@ RSpec.describe Record do
   end
 
   describe '#delete' do
-    xit 'adds a line to the record' do
+    it 'adds a line to the record' do
       record = Record.new
       
       expect(record.data[1]).to eq("Anthony", "1", "1", "0")
