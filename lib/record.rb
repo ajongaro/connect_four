@@ -1,18 +1,16 @@
 require 'CSV'
 
 class Record
-  attr_reader :file, :hall_of_fame
+  attr_reader :file, :rows, :hall_of_fame
 
-  def initialize
-    @rows = CSV.read("./assets/record.csv")
+  def initialize(file_location="./assets/record.csv")
+    @rows = CSV.read(file_location)
+    @file_location = file_location
     @hall_of_fame = []
   end
 
-  def printer 
-    print "#{@rows}\n\n"
-  end
-  
   def player_exists?(name)
+    return false if @rows == [[]]
     @rows.each do |row|
       return true if row[0].downcase == name.downcase
     end
@@ -36,10 +34,9 @@ class Record
       puts "-" * 33
       puts "No Entries... yet."
     else
-      top_3 = @hall_of_fame.sort_by {|k| -k[1].to_f}
       puts "~-~ CONNECT FOUR HALL OF FAME ~-~"
       puts "-" * 33
-      top_3[0..2].each do |line|
+      @hall_of_fame[0..2].each do |line|
         puts "#{line[0]}...#{line[1]}%"
       end
     end
@@ -77,7 +74,7 @@ class Record
   end
 
   def write_file
-    CSV.open("./assets/record.csv", "wb") do |csv|
+    CSV.open(@file_location, "wb") do |csv|
       @rows.each do |row|
         csv << row
       end
@@ -85,8 +82,8 @@ class Record
   end
 
   def wipe_file
-    CSV.open("./assets/record.csv", "wb") do |csv|
-      csv << []
+    CSV.open(@file_location, "wb") do |csv|
+      csv = ""
     end
   end
 end
