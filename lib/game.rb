@@ -1,10 +1,12 @@
 require './lib/board'
 require './lib/turn'
+require './lib/record'
 
 class Game
   attr_reader :board
 
   def initialize
+    @record = Record.new
     new_board
   end
 
@@ -53,7 +55,7 @@ class Game
   end
 
   def welcome_message
-    "Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'q' to quit."
+    "Welcome to CONNECT FOUR\nEnter 'p' to play. Enter 'h' for Hall of Fame. Enter 'q' to quit."
   end
 
   def main_menu_prompt
@@ -62,6 +64,10 @@ class Game
     puts "\n"
     if input.downcase == "q"
       quit_game
+    elsif input.downcase == "h"
+      @record.display_hof
+      puts "\n"
+      main_menu_prompt
     elsif input.downcase == "p"
       two_player_prompt
     else
@@ -135,8 +141,14 @@ class Game
 
   def winning_player(turn_count)
     if turn_count.odd?
+      @record.add_result_for(@name_1,"win")
+      @record.add_result_for(@name_2,"lose")
+      @record.write_file
       @name_1
     else
+      @record.add_result_for(@name_1,"lose")
+      @record.add_result_for(@name_2,"win")
+      @record.write_file
       @name_2
     end
   end
@@ -186,6 +198,9 @@ class Game
 
   def two_player_tie_end
     print_board
+    @record.add_result_for(@name_1,"tie")
+    @record.add_result_for(@name_2,"tie")
+    @record.write_file
     puts "\nTie Game!\n\n"
     new_board
     return two_player_prompt

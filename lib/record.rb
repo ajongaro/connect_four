@@ -19,18 +19,30 @@ class Record
     false
   end 
  
-  def win_percentage
+  def generate_hof 
+    @hall_of_fame.clear
     @rows.each do |row|
       total_games = (row[1].to_i + row[2].to_i + row[3].to_i)
       percentage = ((row[1].to_f / total_games) * 100).round(2)
       @hall_of_fame << [row[0],percentage.to_s]
     end
-    @hall_of_fame.sort_by {|k| -k[1].to_f}
+    @hall_of_fame.sort_by! {|k| -k[1].to_f}
   end 
  
   def display_hof
-    top_3 = @hall_of_fame.sort_by {|k| -k[1].to_f}
-    top_3[0..2]
+    generate_hof
+    if @hall_of_fame == []
+      puts "~-~ CONNECT FOUR HALL OF FAME ~-~"
+      puts "-" * 33
+      puts "No Entries... yet."
+    else
+      top_3 = @hall_of_fame.sort_by {|k| -k[1].to_f}
+      puts "~-~ CONNECT FOUR HALL OF FAME ~-~"
+      puts "-" * 33
+      top_3[0..2].each do |line|
+        puts "#{line[0]}...#{line[1]}%"
+      end
+    end
   end
   
   def add_result_for(player, result)
@@ -77,7 +89,6 @@ class Record
       csv << []
     end
   end
-
 end
 
 # remember to call write_file at the end of the game?

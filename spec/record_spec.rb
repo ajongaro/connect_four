@@ -15,7 +15,6 @@ RSpec.describe Record do
   describe '#parse' do
     it 'populates data with csv as array' do
       record = Record.new
-      record.parse
 
       expect(record.data[0]).to eq(["player_name", "games_started", "wins", "losses"])
     end
@@ -32,9 +31,6 @@ RSpec.describe Record do
   describe '#printer' do
     it 'prints' do
       record = Record.new
-      record.printer
-      record.update_record("Brady","win")
-      record.printer
     end
   end
 
@@ -42,7 +38,6 @@ RSpec.describe Record do
     it 'adds a line to the record' do
       record = Record.new
       
-      expect(record.data[1]).to eq("Anthony", "1", "1", "0")
     end
   end
 end
