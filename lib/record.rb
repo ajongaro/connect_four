@@ -87,5 +87,3 @@ class Record
     end
   end
 end
-
-# remember to call write_file at the end of the game?
